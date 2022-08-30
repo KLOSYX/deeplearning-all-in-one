@@ -51,7 +51,7 @@ datamodule:
   tokenizer_name: ${bert_name_or_path}
   val_ratio: 0.1
   mlm: true
-  wwm: true
+  whole_word_mask: true
   train_path: /data/clean_raw_text/all_data_cleaned_with_cn_ref.json
   test_path: /data/clean_raw_text/all_data_cleaned_with_cn_ref.json
   batch_size_per_gpu: 32
