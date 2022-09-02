@@ -38,9 +38,9 @@ class Collector:
         max_length: int = 200,
     ):
         super().__init__()
-        self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_name, cache_dir="/data/.cache")
+        self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_name, cache_dir="~/.cache")
         self.processor = (
-            AutoFeatureExtractor.from_pretrained(processor_name, cache_dir="/data/.cache")
+            AutoFeatureExtractor.from_pretrained(processor_name, cache_dir="~/.cache")
             if processor_name is not None
             else None
         )

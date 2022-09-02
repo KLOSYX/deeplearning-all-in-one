@@ -50,9 +50,9 @@ class WeiboDataset(Dataset):
 
 class Collector:
     def __init__(self, tokenizer: str, processor: Optional[str], max_length: int = 200) -> None:
-        self.tokenizer = AutoTokenizer.from_pretrained(tokenizer, cache_dir="/data/.cache")
+        self.tokenizer = AutoTokenizer.from_pretrained(tokenizer, cache_dir="~/.cache")
         self.processor = (
-            AutoFeatureExtractor.from_pretrained(processor, cache_dir="/data/.cache")
+            AutoFeatureExtractor.from_pretrained(processor, cache_dir="~/.cache")
             if processor is not None
             else None
         )

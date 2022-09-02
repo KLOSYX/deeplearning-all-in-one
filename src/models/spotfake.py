@@ -26,11 +26,9 @@ class SpotFake(FakeNewsBase):
 
         super().__init__()
         self.save_hyperparameters()
-        bert_config = BertConfig.from_pretrained(bert_name, cache_dir="/data/.cache")
+        bert_config = BertConfig.from_pretrained(bert_name, cache_dir="~/.cache")
         # model
-        self.bert = BertModel.from_pretrained(
-            bert_name, cache_dir="/data/.cache", config=bert_config
-        )
+        self.bert = BertModel.from_pretrained(bert_name, cache_dir="~/.cache", config=bert_config)
         self.vgg_model = vgg19_bn(weights=VGG19_BN_Weights.IMAGENET1K_V1)
 
         # layers without trainable weights
