@@ -203,14 +203,12 @@ class MixModalData(pl.LightningDataModule):
         super().__init__()
         self.save_hyperparameters()
         self.visual_processor = (
-            AutoFeatureExtractor.from_pretrained(
-                self.hparams.visual_encoder, cache_dir="/data/.cache"
-            )
+            AutoFeatureExtractor.from_pretrained(self.hparams.visual_encoder, cache_dir="~/.cache")
             if multimodal
             else None
         )
         self.tokenizer = AutoTokenizer.from_pretrained(
-            self.hparams.tokenizer_name, cache_dir="/data/.cache"
+            self.hparams.tokenizer_name, cache_dir="~/.cache"
         )
         self.processor = Processor(
             self.visual_processor,

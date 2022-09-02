@@ -33,11 +33,11 @@ class BertSequenceClassification(pl.LightningModule):
         self.save_hyperparameters()
 
         # model
-        config = BertConfig.from_pretrained(bert_name, cache_dir="/data/.cache")
+        config = BertConfig.from_pretrained(bert_name, cache_dir="~/.cache")
         config.hidden_dropout_prob = dropout_prob
         config.attention_probs_dropout_prob = dropout_prob
         config.num_labels = num_classes
-        self.bert = BertModel.from_pretrained(bert_name, cache_dir="/data/.cache", config=config)
+        self.bert = BertModel.from_pretrained(bert_name, cache_dir="~/.cache", config=config)
         self.classifier = nn.Linear(config.hidden_size, num_classes)
 
         # loss function
