@@ -5,7 +5,7 @@ import pytest
 import yaml
 from hydra import compose, initialize
 from hydra.core.hydra_config import HydraConfig
-from omegaconf import open_dict
+from omegaconf import OmegaConf, open_dict
 
 root = pyrootutils.setup_root(__file__, dotenv=True, pythonpath=True)
 
@@ -25,11 +25,11 @@ def test_train_experiments(tmp_path):
                 overrides=[f"experiment={str(config).split('experiment/')[-1]}"],
             )
             sample_path = cfg.datamodule.get("_target_").split(".")[-2]
-            config_path = root / sample_path / "config.yaml"
+            config_path = root / "tests" / "datamodule" / sample_path / "config.yaml"
             if config_path.exists():
                 with open(config_path) as f:
-                    override_cfg = yaml.safe_load(f)
-                cfg.datamodule.update(override_cfg)
+                    override_cfg = OmegaConf.load(f)
+                cfg.datamodule.merge_with(override_cfg)
 
             with open_dict(cfg):
                 cfg.paths.root_dir = str(root)

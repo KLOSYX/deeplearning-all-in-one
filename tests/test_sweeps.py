@@ -13,18 +13,18 @@ overrides = [
 ]
 
 
-@RunIf(sh=True)
-@pytest.mark.slow
-def test_experiments(tmp_path):
-    """Test running all available experiment configs with fast_dev_run=True."""
-    command = [
-        startfile,
-        "-m",
-        "experiment=glob(*)",
-        "hydra.sweep.dir=" + str(tmp_path),
-        "++trainer.fast_dev_run=true",
-    ] + overrides
-    run_sh_command(command)
+# @RunIf(sh=True)
+# @pytest.mark.slow
+# def test_experiments(tmp_path):
+#     """Test running all available experiment configs with fast_dev_run=True."""
+#     command = [
+#         startfile,
+#         "-m",
+#         "experiment=glob(*)",
+#         "hydra.sweep.dir=" + str(tmp_path),
+#         "++trainer.fast_dev_run=true",
+#     ] + overrides
+#     run_sh_command(command)
 
 
 @RunIf(sh=True)
