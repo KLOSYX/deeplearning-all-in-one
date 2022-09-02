@@ -4,7 +4,7 @@ from torch import nn
 from torchvision.models import VGG19_BN_Weights, vgg19_bn
 from transformers import BertConfig, BertModel, get_constant_schedule_with_warmup
 
-from models.components.fake_news_base import FakeNewsBase
+from src.models.components.fake_news_base import FakeNewsBase
 
 
 class SpotFake(FakeNewsBase):

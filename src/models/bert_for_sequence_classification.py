@@ -3,13 +3,12 @@ from typing import List, Optional, Union
 import pytorch_lightning as pl
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 import torchmetrics
 from einops import reduce
 from pytorch_lightning.utilities.types import EPOCH_OUTPUT, STEP_OUTPUT
 from transformers import BertConfig, BertModel, get_constant_schedule_with_warmup
 
-from utils.loss.focal_loss import FocalLoss
+from src.utils.loss.focal_loss import FocalLoss
 
 
 class BertSequenceClassification(pl.LightningModule):

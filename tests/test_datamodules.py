@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Dict
 
 import hydra
 import pyrootutils
