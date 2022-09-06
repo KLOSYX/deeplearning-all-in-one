@@ -10,15 +10,14 @@ from omegaconf import DictConfig, OmegaConf, open_dict
 root = pyrootutils.setup_root(__file__, dotenv=True, pythonpath=True)
 
 from src.train import train
-from src.utils.pylogger import get_pylogger
-
-logger = get_pylogger(__name__)
 
 
 def get_train_experiment_cfgs() -> List[Tuple[str, DictConfig]]:
     config_path = Path(root / "configs" / "experiment")
     cfgs = []
     for config in config_path.glob("**/*.yaml"):
+        if "example.yaml" in str(config):  # do not test example.yaml
+            continue
         with initialize(
             version_base="1.2", config_path="../configs", job_name="test_train_experiment"
         ):
@@ -34,6 +33,8 @@ def get_train_experiment_cfgs() -> List[Tuple[str, DictConfig]]:
                 with open(config_path) as f:
                     override_cfg = OmegaConf.load(f)
                 cfg.datamodule.merge_with(override_cfg)
+            else:
+                raise FileNotFoundError(f"Test config in {config_path} not found!")
             with open_dict(cfg):
                 cfg.paths.root_dir = str(root)
                 cfg.trainer.fast_dev_run = True
@@ -51,7 +52,6 @@ def get_train_experiment_cfgs() -> List[Tuple[str, DictConfig]]:
 @pytest.mark.slow
 @pytest.mark.parametrize("experiment,cfg", get_train_experiment_cfgs())
 def test_train_experiments(tmp_path, experiment: str, cfg: DictConfig):
-    logger.info(f"Testing experiment {experiment}...")
     cfg = cfg.copy()
     HydraConfig().set_config(cfg)
     with open_dict(cfg):

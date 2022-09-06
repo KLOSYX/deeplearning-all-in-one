@@ -5,7 +5,7 @@ import torch
 import yaml
 from transformers import BatchEncoding, BatchFeature
 
-from src.datamodules.fake_news import MultiModalData
+from src.datamodules.fake_news_data import MultiModalData
 
 
 @pytest.mark.parametrize("batch_size", [32, 128])
