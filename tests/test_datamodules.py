@@ -9,6 +9,7 @@ from omegaconf import OmegaConf
 root = pyrootutils.setup_root(__file__, dotenv=True, pythonpath=True)
 
 
+@pytest.mark.local
 @pytest.mark.slow
 def test_datamodules():
     # check data path

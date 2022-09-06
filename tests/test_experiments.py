@@ -33,8 +33,6 @@ def get_train_experiment_cfgs() -> List[Tuple[str, DictConfig]]:
                 with open(config_path) as f:
                     override_cfg = OmegaConf.load(f)
                 cfg.datamodule.merge_with(override_cfg)
-            else:
-                raise FileNotFoundError(f"Test config in {config_path} not found!")
             with open_dict(cfg):
                 cfg.paths.root_dir = str(root)
                 cfg.trainer.fast_dev_run = True
