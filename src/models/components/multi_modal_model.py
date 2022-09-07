@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 from einops import repeat
+from med import BertForMaskedLM, BertLMHeadModel
 from transformers import (
     BertConfig,
     BertTokenizer,
@@ -11,15 +12,13 @@ from transformers import (
     ViTModel,
 )
 
-from med import BertForMaskedLM, BertLMHeadModel
-
 
 class VisualEncoderLMDecoder(nn.Module):
     def __init__(
-            self,
-            tokenizer,
-            visual_encoder: str = "openai/clip-vit-base-patch32",
-            text_decoder: str = "hfl/chinese-roberta-wwm-ext",
+        self,
+        tokenizer,
+        visual_encoder: str = "openai/clip-vit-base-patch32",
+        text_decoder: str = "hfl/chinese-roberta-wwm-ext",
     ) -> None:
         super().__init__()
         if "clip" in visual_encoder:

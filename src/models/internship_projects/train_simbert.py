@@ -23,7 +23,9 @@ class SimilarityLoss(nn.Module):
         labels[::2] = labels[::2] + 1
         labels[1::2] = labels[1::2] - 1
         norm_vector: torch.Tensor = F.normalize(vectors, dim=1)  # (N, vector_dim)
-        similarity: torch.Tensor = torch.matmul(norm_vector, norm_vector.t()) * self.logit_scale  # (N, N)
+        similarity: torch.Tensor = (
+            torch.matmul(norm_vector, norm_vector.t()) * self.logit_scale
+        )  # (N, N)
         similarity.fill_diagonal_(torch.finfo(similarity.dtype).min)
         similarity = F.softmax(similarity, dim=1)
         loss = F.cross_entropy(similarity, labels, label_smoothing=self.label_smoothing)
