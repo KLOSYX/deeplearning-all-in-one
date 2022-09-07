@@ -130,17 +130,17 @@ class SimBertModel(BertPreTrainedModel):
         )
 
     def forward_vector(
-        self,
-        input_ids: Optional[torch.Tensor] = None,
-        attention_mask: Optional[torch.Tensor] = None,
-        token_type_ids: Optional[torch.Tensor] = None,
-        position_ids: Optional[torch.Tensor] = None,
-        head_mask: Optional[torch.Tensor] = None,
-        inputs_embeds: Optional[torch.Tensor] = None,
-        labels: Optional[torch.Tensor] = None,
-        output_attentions: Optional[bool] = None,
-        return_dict: Optional[bool] = None,
-    ) -> Tuple[Union[torch.Tensor, CausalLMOutputWithCrossAttentions]]:
+            self,
+            input_ids: Optional[torch.Tensor] = None,
+            attention_mask: Optional[torch.Tensor] = None,
+            token_type_ids: Optional[torch.Tensor] = None,
+            position_ids: Optional[torch.Tensor] = None,
+            head_mask: Optional[torch.Tensor] = None,
+            inputs_embeds: Optional[torch.Tensor] = None,
+            labels: Optional[torch.Tensor] = None,
+            output_attentions: Optional[bool] = None,
+            return_dict: Optional[bool] = None,
+    ) -> Tuple[Union[torch.Tensor, CausalLMOutputWithCrossAttentions], torch.Tensor]:
         forward_output = self.forward(
             input_ids=input_ids,
             attention_mask=attention_mask,
