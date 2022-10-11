@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 import pyrootutils
 
 root = pyrootutils.setup_root(
@@ -112,6 +115,15 @@ def train(cfg: DictConfig) -> Tuple[dict, dict]:
 
     # merge train and test metrics
     metric_dict = {**train_metrics, **test_metrics}
+
+    # save metrics
+    if metric_dict:
+        log.info(f"Saving fit and test metrics!")
+        metrics_str = json.dumps(metric_dict, ensure_ascii=False, indent=2)
+
+        metrics_file = Path(trainer.log_dir) / "metrics.json"
+        with metrics_file.open("w") as f:
+            f.write(metrics_str)
 
     return metric_dict, object_dict
 
