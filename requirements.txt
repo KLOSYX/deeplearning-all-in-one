@@ -26,7 +26,7 @@ torchvision == 0.14.0
 torchtext == 0.14.0
 tqdm == 4.64.1
 transformers == 4.24.0
-wandb == 0.13.4
+wandb == 0.13.5
 
 # --------- others --------- #
 pyrootutils
