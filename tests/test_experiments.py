@@ -12,7 +12,7 @@ root = pyrootutils.setup_root(__file__, dotenv=True, pythonpath=True)
 from src.train import train
 
 
-def get_train_experiment_cfgs() -> List[Tuple[str, DictConfig]]:
+def get_train_experiment_cfgs() -> list[tuple[str, DictConfig]]:
     config_path = Path(root / "configs" / "experiment")
     cfgs = []
     for config in config_path.glob("**/*.yaml"):

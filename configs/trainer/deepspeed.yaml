@@ -1,4 +1,4 @@
-_target_: pytorch_lightning.Trainer
+_target_: lightning.pytorch.Trainer
 
 default_root_dir: ${paths.output_dir}
 
@@ -8,6 +8,6 @@ max_epochs: 10
 accelerator: gpu
 devices: 1
 strategy:
-  _target_: pytorch_lightning.strategies.DeepSpeedStrategy
+  _target_: lightning.pytorch.strategies.DeepSpeedStrategy
   stage: 2
 num_nodes: 1
